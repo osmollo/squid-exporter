@@ -1,7 +1,11 @@
 FROM golang:alpine as builder
 
+LABEL maintainer="ohermosa@gmail.com"
+
 WORKDIR /go/src/github.com/ohermosa/squid-exporter
 COPY . .
+
+RUN apk add --no-cache vim jq
 
 # Compile the binary statically, so it can be run without libraries.
 RUN CGO_ENABLED=0 GOOS=linux go install -a -ldflags '-extldflags "-s -w -static"' .
