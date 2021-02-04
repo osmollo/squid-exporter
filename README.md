@@ -14,6 +14,7 @@
 Exports squid metrics in Prometheus format
 
 :information_source: This repository is forked from [boynux/squid-exporter](https://github.com/boynux/squid-exporter)
+
 :information_source:  From release 1.0 metric names and some parameters has changed. Make sure you check the docs and update your deployments accordingly!
 
 ## New
