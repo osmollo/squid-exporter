@@ -31,4 +31,3 @@ docker:
 
 clean:
 	rm -f $(EXE)
-
