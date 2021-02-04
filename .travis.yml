@@ -9,7 +9,7 @@ arch:
   - amd64
 
 go:
-- 1.15.7
+- 1.15.x
 
 env:
   global:
@@ -18,7 +18,7 @@ env:
     - REPO_NAME=squid-exporter
 
 before_script:
-  - export TAG=$(jq -r .version release.json)
+  - export TAG=$(cat VERSION)
   - echo $TAG
 
 script:
