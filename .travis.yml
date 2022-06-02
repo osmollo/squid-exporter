@@ -13,8 +13,8 @@ go:
 
 env:
   global:
-    - DOCKER_USERNAME=ohermosa
-    - AUTHOR=ohermosa
+    - DOCKER_USERNAME=osmollo
+    - AUTHOR=osmollo
     - REPO_NAME=squid-exporter
 
 before_script:
