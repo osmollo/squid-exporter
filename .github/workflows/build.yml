@@ -1,0 +1,32 @@
+
+name: Build new image
+on: [push]
+
+jobs:
+  build_image:
+    name: Build docker image
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v3
+
+    - name: Show version number
+      run: |
+        VER=$(cat VERSION)
+        echo "VERSION=$VER" >> $GITHUB_ENV
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USER }}
+        password: ${{ secrets.DOCKERHUB_PASS }}
+
+    - name: Build, tag, and push image to Dockerhub
+      env:
+        docker_image: squid-exporter
+        docker_version: ${{ env.VERSION }}
+      run: |
+        docker build -t osmollo/$docker_image:$docker_version .
+        docker push osmollo/$docker_image:$docker_version
+        docker tag osmollo/$docker_image:$docker_version osmollo/$docker_image:latest
+        docker push osmollo/$docker_image:latest
